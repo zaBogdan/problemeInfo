@@ -7,6 +7,7 @@ int n,m,c,gropi,transee;
 int dx[] = {0, -1, -1, 0, 1, 1,  1,  0, -1};
 int dy[] = {0,  0,  1, 1, 1, 0, -1, -1, -1};
 
+//test
 void read();
 bool valid(int i,int j);
 void shoot(int i,int j,int d);
