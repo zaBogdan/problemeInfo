@@ -3,7 +3,7 @@ Acesta repository contine munca mea in vederea pregatirii pentru admiterea la fa
 
 - [x] Subiectele de la admiterile de la Iasi, Cluj si Timisoara
 - [x] Secvente de vectori ( 10 probleme de pe pbifno.ro )
-- [ ] Submatrici ( 15 probleme de pe pbinfo.ro )
+- [x] Submatrici ( 11/15 probleme de pe pbinfo.ro )
 
 
 # Probeleme de pe pbinfo
