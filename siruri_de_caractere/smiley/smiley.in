@@ -1,0 +1,108 @@
+))live today:-]forget;;---))the past
+act;-]]quickly:]think;-[] slowly
+--))
+8888888888888888888888888888888888888888888888888888888888888PXXXXXXXXXXXXXXXXXXXXXX
+---------------------------------------------------------------------------------O
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;O;;;;;;;;;;;;P;;;;;;;;D;;;;;;;;;;;3;888
+IN PADUREA CU ALUNE 8>3MULTI ARICI VENEAU SFIOSI;OFACEAU TOT CE VULPEA SPUNE:DFIINDCA ERAU MOFTUROSI383!
+#include <fstream.h>
+#include <string.h>
+#define  LMax 2048
+#define  LF 10001
+
+char s1[LMax], s2[LMax];
+char s1n[LF], s2n[LF];
+int n, m;
+int a[LMax][LMax];
+
+
+void citire();
+void afisare();
+void pd();
+
+
+int main()
+{
+
+ citire();
+ pd();
+ afisare();
+
+ return 0;
+}
+
+
+void citire()
+{
+ifstream fin("distsir.in");
+fin.getline(s1, LMax);
+fin.getline(s2, LMax);
+m=strlen(s1); n=strlen(s2);
+}
+
+
+void pd()
+{
+ int i, j;
+ for (i=0; i<=n; i++) a[0][i] = i;
+ for (i=1; i<=m; i++)
+     {
+      a[i][0] = i;
+      for (j=1; j<=n; j++)
+          {
+          if (s1[i] == s2[j]) a[i][j]=a[i-1][j-1];
+             else
+             {
+              if (a[i-1][j-1] < a[i][j-1])
+                 if (a[i-1][j-1] < a[i-1][j]) a[i][j]=a[i-1][j-1];
+                    else a[i][j] = a[i-1][j];
+                 else
+                 if (a[i][j-1]<a[i-1][j]) a[i][j]=a[i][j-1];
+                    else a[i][j]=a[i-1][j];
+              a[i][j]++;
+              }
+          }
+      }
+}
+
+
+void afisare()
+{int i, j, l;
+ ofstream fout("distsir.out");
+ fout<<a[m][n]<<'\n';
+ l=0; i=m; j=n;
+ while (i > 0 && j > 0)
+       {
+        l++;
+        if (s1[i] == s2[j])
+           { s1n[l]=s1[i]; s2n[l]=s2[j]; i--; j--; }
+           else
+           {
+            if (a[i-1][j-1]<a[i][j-1])
+                if (a[i-1][j-1]<a[i-1][j])
+                   {s1n[l]=s1[i];  s2n[l]=s2[j]; i--; j--;}
+                else
+                {s1n[l] = s1[i]; s2n[l] = '*'; i--;}
+            else
+            if (a[i][j-1]<a[i-1][j])
+                {s1n[l] = '*';s2n[l] = s2[j];  j--; }
+                else
+                {s1n[l] = s1[i]; s2n[l] = '*'; i--; }
+           }
+        }
+
+  while (i > 0) {l++;  s1n[l] = s1[i--]; s2n[l] = '*';}
+  while (j > 0) {l++;  s1n[l] = '*';     s2n[l] = s2[j--];}
+
+  for (i=l; i>0; i--) fout<<s1n[i];
+  fout<<'\n';
+  for (i=l; i>0; i--) fout<<s2n[i];
+  fout<<'\n';
+  fout.close();
+}
+;P
+;-P
+;----P
+;------------O
+>--------------------------------------------------------------------------D
+q.e.d.

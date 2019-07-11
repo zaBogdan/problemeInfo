@@ -21,14 +21,16 @@ int calc_mod(short v[NMax], int k){
 
 int main(){
     read();
-
+    
     return 0;
 }
 
 void read(){
     ifstream f("pomi.in");
     char a1[NMax],b1[NMax];
-    f >> a1 >> b1 >> k;
+    f.getline(a1,NMax);
+    f.getline(b1,NMax);
+    f >> k;
     transform(a,a1);
     transform(b,b1);
     f.close();
