@@ -30,12 +30,7 @@ void read(){
             int nr;
             f >> nr;
             getpos(nr);
-            bool ok1=0, ok2=0;
-            a[x][y]=3;
-            for(int k=1;k<=4;k++){
-                if(a[x+dx[k]][y+dy[k]]==1) ok1=1,a[x][y]=1;
-
-            }
+            
         }
     }
     f.close();

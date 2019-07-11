@@ -22,6 +22,25 @@ int main(){
         if(p%2==1){
             cout << "partitie inexistenta";
         }else{
+            int s=0;
+            for(int i=1;i<=n/2;i++)
+                s+=a[i];
+            if((p/2)%2==1){
+                for(int i=1;i<=n/2;i++)
+                    if(a[i]==p/2)
+                        a[i]=0;
+                b[n/2+1]=p/2;
+            }else{
+                for(int i=1;i<=n/2;i++){
+                    if(a[i]==p/2+1)
+                        a[i]=0;
+                    if(a[i]==1)
+                        a[i]=2;
+                    if(b[i]==2)
+                        b[i]=1;
+                }
+                b[n/2+1] = 1+p/2;
+            }
             
         }
 
