@@ -2,64 +2,52 @@
 #include <fstream>
 #include <cstring>
 using namespace std;
-const int NMax=1005;
-struct coord{int x,y;} v[1000001],b;
-int n,m,a[NMax][NMax],poz=5;
+const int NMax=1001;
+struct coord{int x,y;} v[1000001],final;
+int n,m,poz=5,minim=100000,a[NMax][NMax],b[NMax][NMax],c[NMax][NMax],nr;
 int dx[8] = {0, -1, 0, 1, 0};
 int dy[8] = {0,  0, 1, 0,-1};
 void read();
 
 void append_vector(char c[]);
-void bordare();
-void lee(int x,int y);
-void afisare(int x,int y){
+void copy_matrix();
+bool ok(int i,int j);
+int lee(int x,int y);
+void print(){
     ofstream g("brutar.out");
-    int vf= 0;
-    memset(v,0,sizeof(v));
-    for(int i=5;i<7;i++){
-        dx[i] = -dx[i];
+    g << nr << endl;
+    for(int i=5;i<=6;i++)
+        dx[i] = -dx[i],
         dy[i] = -dy[i];
-    }
-    g << a[x][y] << endl;
-    v[++vf].x = x;
-    v[vf].y = y;
-    while(x>1){   
-        for(int i=1;i<7;i++){
-            int newX = x+dx[i];
-            int newY = y+dy[i];
-            if(a[newX][newY]==a[x][y]-1){
-                x = newX;
-                y = newY;
-                v[++vf].x = x;
-                v[vf].y = y;
-                break;
+    memset(v,0,sizeof(v));
+    int vf =0;
+    v[++vf] = final;
+    while(c[v[vf].x][v[vf].y]>1){
+        for(int k=1;k<=6;k++){
+            int newX = v[vf].x+dx[k];
+            int newY = v[vf].y+dy[k];
+            if(ok(newX,newY) && c[newX][newY]==c[v[vf].x][v[vf].y]-1){
+                v[++vf].x = newX;
+                v[vf].y = newY;
+                k=10;
             }
-
         }
-        // break;
     }
     while(vf){
         g << v[vf].x << ' ' << v[vf].y << endl;
         vf--;
     }
     g.close();
+
 }
+
 
 int main(){
     read();
-    bordare();
     for(int i=1;i<=m;i++)
-        if(!a[1][i]){
-            lee(1,i);
-            
-        }
-    int minim = 10000000,poz;
-    for(int i=1;i<=m;i++)
-        if(minim>a[n][i] && a[n][i]>0){
-            minim = a[n][i];
-            poz = i;
-        }
-    afisare(n,poz);
+        if(!a[1][i])
+            nr = lee(1,i);
+    print();
     return 0;
 }
 
@@ -69,7 +57,7 @@ void read(){
     char c[NMax];
     f.getline(c,1);
     for(int i=1;i<=n;i++){
-        f.getline(c,1001);
+        f.getline(c,NMax);
         for(int j=1;j<=m;j++)
             if(c[j-1]=='X')
                 a[i][j]= -1;
@@ -105,29 +93,48 @@ void append_vector(char c[]){
     }
     poz++;
 }
-void bordare(){
-    for(int i=0;i<=n+1;i++)
-        a[i][0] = a[i][m+1] = -1;
-    for(int i=0;i<=m+1;i++)
-        a[0][i] = a[n+1][i] = -1;
+bool ok(int i,int j){
+    if(i<0 || j <0)
+        return 0;
+    if(i>n || j > m)
+        return 0;
+    return 1;
 }
+int lee(int x,int y){
+    for(int i=1;i<=n;i++)
+        for(int j=1;j<=m;j++)
+            b[i][j] = a[i][j];
 
-void lee(int x,int y){
     int prim,ultim;
-    prim = ultim = 1;
+    memset(v,0,sizeof(v));
+    prim = ultim =1;
     v[prim].x = x;
     v[prim].y = y;
-    a[x][y] = 1;
-    while(prim<=ultim && v[prim].x!=n){
-        for(int i=1;i<poz;i++)
-            if(!a[v[prim].x+dx[i]][v[prim].y+dy[i]]){
+    b[x][y] = 1;
+    while(prim<=ultim || v[prim].x==n){
+        for(int k=1;k<=6;k++){
+            int newX = v[prim].x+dx[k];
+            int newY = v[prim].y+dy[k];
+            if(ok(newX,newY) && !b[newX][newY]){
                 ultim++;
-                v[ultim].x = v[prim].x+dx[i];
-                v[ultim].y = v[prim].y+dy[i];
-                a[v[ultim].x][v[ultim].y] = a[v[prim].x][v[prim].y]+1;
+                v[ultim].x = newX;
+                v[ultim].y = newY;
+                b[newX][newY] = b[v[prim].x][v[prim].y]+1;
             }
+        }
         prim++;
     }
-    b.x = v[prim].x;
-    b.y = v[prim].y;
+    for(int i=1;i<=m;i++)
+        if(b[n][i]<minim && b[n][i]>0){
+            minim = b[n][i];
+            final.x = n;
+            final.y = i;
+            copy_matrix();
+        }
+    return minim;
+}
+void copy_matrix(){
+    for(int i=1;i<=n;i++)
+        for(int j=1;j<=m;j++)
+            c[i][j] = b[i][j];
 }
