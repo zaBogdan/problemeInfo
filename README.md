@@ -17,6 +17,8 @@ Acesta repository contine munca mea in vederea pregatirii pentru admiterea la fa
 - **Submatrici**: 1103, 1218, 1378, 2178, 1097, 1076, 1047, 1049, 1132, 1142, 1619, 151, 1486, 1948, 1980
 - **Siruri de caractere**: 2168, 2116, 2212, 2185, 2352, 2899, 964
 - **Structuri tip coada**: 1795, 1761, 628, 2187, 2496, 1099, 1028
+- **Transformari baze de numeratie**: 1300, 945, 946
+- **Backtracking (basic)**: 324, 2710, 344, 2245, 1357, 1322, 320, 1810, 1812, 2247
 
 # Boilerplate code
 This code is used for all `.cpp` files. 
