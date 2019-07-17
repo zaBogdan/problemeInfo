@@ -6,6 +6,9 @@ Acesta repository contine munca mea in vederea pregatirii pentru admiterea la fa
 - [x] Submatrici ( 13/15 probleme de pe pbinfo.ro )
 - [x] Siruri de caractere ( 7/7 probleme de pe pbinfo.ro )
 - [x] Submatrici ( 4/7 probleme de pe pbinfo.ro )
+- [x] Structuri de coada ( lee, fill ) ( 5/7 probleme de pe pbinfo.ro )
+- [x] Baze de numeratie ( 3/3 probleme de pe pbinfo.ro )
+- [x] Backtracking (basic) ( 10/10 probleme de pe pbinfo.ro )
 
 
 
