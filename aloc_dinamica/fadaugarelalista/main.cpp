@@ -7,37 +7,31 @@ struct nod{ int info; nod *urm;};
 //helper functions 
 void create (nod *&prim, nod *&ultim);
 void afisare(nod *prim);
-nod* element(nod *p, int poz){
-    nod *prim = p;
-    int nr=0;
-    while(prim){
-        if(poz==nr)
-            return prim;
-        prim = prim->urm;
-        nr++;
-    }
-    return NULL;
-}
 
 //my function
-void sterge(nod * & p){
+void adaugare(nod *&p, int x){
     nod *prim = p;
-    while(prim){
-        nod *next_nod = prim->urm;
-        while(next_nod && next_nod->info % 2 == 0){
-            prim->urm = next_nod->urm;
-            next_nod = next_nod->urm;
+    if(prim==NULL){
+        p = new nod;
+        p->info = x;
+        p->urm = NULL;
+    }else{
+        while(prim->urm){
+            prim = prim->urm;
         }
-        prim = prim->urm;
+        nod *new_nod;
+        new_nod = new nod;
+        new_nod->info = x;
+        new_nod->urm = NULL;
+        prim->urm = new_nod;
     }
-    if(p->info % 2 == 0)
-        p = p->urm;
+
 }
 
 int main(){
     nod *prim,*ultim;
     create(prim,ultim);
-    sterge(prim); 
+    adaugare(prim, 123087666); 
     afisare(prim);
     cout << endl;
     return 0;

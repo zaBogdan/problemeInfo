@@ -20,18 +20,19 @@ nod* element(nod *p, int poz){
 }
 
 //my function
-void sterge(nod * & p){
+void sterge(nod * & p, nod * q){
     nod *prim = p;
+    if(p==q)
+        p = q->urm;
+    else
     while(prim){
-        nod *next_nod = prim->urm;
-        while(next_nod && next_nod->info % 2 == 0){
-            prim->urm = next_nod->urm;
-            next_nod = next_nod->urm;
+        if(prim->urm==q){
+            nod *next_nod = prim;
+            next_nod->urm = q->urm;
         }
-        prim = prim->urm;
+        
+        prim = prim->urm; 
     }
-    if(p->info % 2 == 0)
-        p = p->urm;
 }
 
 int main(){
