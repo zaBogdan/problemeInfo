@@ -1,0 +1,34 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream f("numere.in");
+
+
+int main(){
+    int x,y,finish,lmax=0, pos=0;
+    f >> x;
+    finish=x;
+    pos=1;
+    while(f >> y){
+        if(y-x==pos){
+            pos++;
+        }else{
+            if(pos>lmax){
+                lmax=pos;
+                finish=x;
+            }
+            pos=1;
+        }
+        x=y;
+    }
+    // ultimul element si nr de elemente.
+
+    int start = finish - ((lmax)*(lmax-1)/2);
+    for(int i=0;i<lmax;i++){
+            cout << start+i << ' ';
+            start+=i;
+    }
+    //cout << start << ' ' << lmax;
+    cout << endl; //development purpose.
+    return 0;
+}
