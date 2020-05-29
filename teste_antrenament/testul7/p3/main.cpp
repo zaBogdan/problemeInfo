@@ -9,17 +9,15 @@ int main(){
     if(x<0)
         s+=x;
     while(f >> y){
-        if(y<0)
+        if(y<0){
             s+=y;
-        else{
             if(s<smax)
                 smax=s;
-            s=0;
         }
+        else
+            s=0;
         x=y;
     }
-    if(s<smax)
-        smax=s;
     cout << smax;
     cout << endl;
     return 0;
