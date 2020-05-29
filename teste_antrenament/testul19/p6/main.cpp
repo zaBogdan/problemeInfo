@@ -13,7 +13,7 @@ int main(){
         bool ok = true;
         if(strchr(vocale, p[0]) || strchr(vocale, p[strlen(p)-1]))
             ok = false;
-        for(int i=1;i<strlen(p)-2 && ok;i++)
+        for(int i=1;i<strlen(p)-1 && ok;i++)
             if(!strchr(vocale,p[i]))
                 ok = false;
         if(ok)
