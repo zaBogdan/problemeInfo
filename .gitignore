@@ -1,1 +1,4 @@
 .vscode/*
+random/*
+*.out
+.DS_Store
