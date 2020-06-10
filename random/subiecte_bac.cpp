@@ -11,17 +11,21 @@ int divizor(int n){
 }
 
 int main(){
-    int n,p=1,nr=0,cif;
+    int n,c1,c2;
     cin >> n;
-    while(n){
-        cif = n%10;
-        if(cif%2==1)
-            cif--;
-        nr=nr+cif*p;
-        p*=10;
+    do{
+        c1=n%10;
         n/=10;
-    }
-    cout << nr;
+        c2=n%10;
+        if(c1>c2){
+            c2=c1;
+            c1=n%10;
+        }
+        while(c1<c2){
+            cout << c1;
+            c2/=2;
+        }
+    }while(n>9);
     cout << endl;
     return 0;
 }
